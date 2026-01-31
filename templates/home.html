@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Bosh sahifa{% endblock %}
+
+{% block content %}
+<h2>Barcha Postlar</h2>
+
+{% if posts %}
+    {% for post in posts %}
+    <article class="post-card">
+        <h3><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+        <p class="meta">{{ post.author }} - {{ post.created_at.strftime('%d.%m.%Y %H:%M') }}</p>
+        <p>{{ post.content[:200] }}{% if post.content|length > 200 %}...{% endif %}</p>
+        <a href="/post/{{ post.id }}" class="read-more">To'liq o'qish →</a>
+    </article>
+    {% endfor %}
+{% else %}
+    <p>Hali postlar yo'q. <a href="/create">Birinchi postni yarating!</a></p>
+{% endif %}
+{% endblock %}
+
+
